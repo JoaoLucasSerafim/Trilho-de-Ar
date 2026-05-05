@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trilho de Ar</title>
+</head>
+<body>
+    <h1>Trilho de Ar</h1>
+    <p>Cálculo de velocidade e velocidade média</p>
+ 
+    <h4>Posições fixas (em cm):</h4>
+    <ul>
+        <li>P0: 0 cm — 0 s</li>
+        <li>P1: 10 cm — ? s</li>
+        <li>P2: 20 cm — ? s</li>
+        <li>P3: 30 cm — ? s</li>
+        <li>P4: 40 cm — ? s</li>
+    </ul>
+ 
+    <p>Insira os tempos registrados em cada sensor (em segundos):</p>
+ 
+    <form method="POST">
+        <label>Tempo P1 (s): <input type="number" name="P1" step="any" required></label><br><br>
+        <label>Tempo P2 (s): <input type="number" name="P2" step="any" required></label><br><br>
+        <label>Tempo P3 (s): <input type="number" name="P3" step="any" required></label><br><br>
+        <label>Tempo P4 (s): <input type="number" name="P4" step="any" required></label><br><br>
+        <button type="submit">Calcular</button>
+    </form>
+ 
+    {% if resultados %}
+        {% if resultados.erro %}
+            <p style="color:red;">{{ resultados.erro }}</p>
+        {% else %}
+            <h2>Resultados</h2>
+            <table border="1" cellpadding="8">
+                <thead>
+                    <tr>
+                        <th>Trecho</th>
+                        <th>Velocidade (cm/s)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>P0 → P1</td><td>{{ resultados.v1 }}</td></tr>
+                    <tr><td>P1 → P2</td><td>{{ resultados.v2 }}</td></tr>
+                    <tr><td>P2 → P3</td><td>{{ resultados.v3 }}</td></tr>
+                    <tr><td>P3 → P4</td><td>{{ resultados.v4 }}</td></tr>
+                    <tr><td><strong>Velocidade média total</strong></td><td><strong>{{ resultados.v_media }} cm/s</strong></td></tr>
+                </tbody>
+            </table>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
